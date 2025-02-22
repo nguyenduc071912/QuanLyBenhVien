@@ -42,7 +42,7 @@ public class BacSi extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        mniDoiMatKhau = new javax.swing.JMenuItem();
         jSeparator3 = new javax.swing.JPopupMenu.Separator();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
@@ -121,8 +121,13 @@ public class BacSi extends javax.swing.JFrame {
         jMenuItem1.setText("Đăng xuất");
         jMenu1.add(jMenuItem1);
 
-        jMenuItem2.setText("Đổi mật khẩu");
-        jMenu1.add(jMenuItem2);
+        mniDoiMatKhau.setText("Đổi mật khẩu");
+        mniDoiMatKhau.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniDoiMatKhauActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mniDoiMatKhau);
         jMenu1.add(jSeparator3);
 
         jMenuItem3.setText("Thoát");
@@ -195,6 +200,12 @@ public class BacSi extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnDangXuatActionPerformed
 
+    private void mniDoiMatKhauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniDoiMatKhauActionPerformed
+        // TODO add your handling code here:
+        DoiMatKhau dmk = new DoiMatKhau();
+        dmk.setVisible(true);
+    }//GEN-LAST:event_mniDoiMatKhauActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -242,7 +253,6 @@ public class BacSi extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
@@ -256,5 +266,6 @@ public class BacSi extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator4;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JToolBar jToolBar1;
+    private javax.swing.JMenuItem mniDoiMatKhau;
     // End of variables declaration//GEN-END:variables
 }

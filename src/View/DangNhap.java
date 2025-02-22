@@ -55,13 +55,19 @@ public class DangNhap extends javax.swing.JFrame {
                 this.dispose();
                 break;
             case "yta":
-                
+                NhanVienYTe nv = new NhanVienYTe();
+                nv.setVisible(true);
+                this.dispose();
                 break;
             case "quantri":
-                
+                QuanLyThongTInBacSi qlttbs = new QuanLyThongTInBacSi();
+                qlttbs.setVisible(true);
+                this.dispose();
                 break;
             case "benhnhan":
-                
+                TheoDoiBenhAn tdba = new TheoDoiBenhAn();
+                tdba.setVisible(true);
+                this.dispose();
                 break;
             default:
                 JOptionPane.showMessageDialog(this, "Vai trò không hợp lệ!");
