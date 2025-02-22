@@ -49,6 +49,7 @@ public class NhanVienYTe extends javax.swing.JFrame {
         jMenu12 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Nhân Viên Y Tế");
 
         jToolBar1.setRollover(true);
 
