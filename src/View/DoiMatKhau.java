@@ -9,12 +9,16 @@ package View;
  * @author Admin
  */
 public class DoiMatKhau extends javax.swing.JFrame {
-
+    private static String dburl="jdbc:sqlserver://localhost:1433;database=QLBenhVien;user=sa;password=111;trustServerCertificate=true";
     /**
      * Creates new form DoiMatKhau
      */
     public DoiMatKhau() {
         initComponents();
+    }
+    
+    public void doimatkhau(){
+        String sql = "";
     }
 
     /**
