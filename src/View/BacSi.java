@@ -57,6 +57,7 @@ public class BacSi extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTextArea1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Bac Si");
 
         jToolBar1.setRollover(true);
 
