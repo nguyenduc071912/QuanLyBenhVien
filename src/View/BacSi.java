@@ -4,6 +4,8 @@
  */
 package View;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author hongd
@@ -65,6 +67,11 @@ public class BacSi extends javax.swing.JFrame {
         btnDangXuat.setFocusable(false);
         btnDangXuat.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnDangXuat.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnDangXuat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDangXuatActionPerformed(evt);
+            }
+        });
         jToolBar1.add(btnDangXuat);
 
         btnThoat.setText("Thoát");
@@ -167,12 +174,26 @@ public class BacSi extends javax.swing.JFrame {
 
     private void btnThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoatActionPerformed
         // TODO add your handling code here:
-        this.dispose();
+        int choice = JOptionPane.showConfirmDialog(this, "Ban co muon thoat ?", "Thoat", JOptionPane.YES_NO_CANCEL_OPTION);
+        if (choice == JOptionPane.YES_OPTION) {
+            this.dispose();
+        }
     }//GEN-LAST:event_btnThoatActionPerformed
 
     private void btnCNKQActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCNKQActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCNKQActionPerformed
+
+    private void btnDangXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangXuatActionPerformed
+        // TODO add your handling code here:
+        int choice = JOptionPane.showConfirmDialog(this, "Ban co muon dang xuat ?", "Dang xuat", JOptionPane.YES_NO_CANCEL_OPTION);
+        if (choice == JOptionPane.YES_OPTION) {
+            DangNhap dn = new DangNhap();
+            dn.setVisible(true);
+            this.dispose();
+        }
+
+    }//GEN-LAST:event_btnDangXuatActionPerformed
 
     /**
      * @param args the command line arguments

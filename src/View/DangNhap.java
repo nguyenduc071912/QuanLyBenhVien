@@ -22,6 +22,7 @@ public class DangNhap extends javax.swing.JFrame {
      */
     public DangNhap() {
         initComponents();
+        setLocationRelativeTo(null);
     }
     
     private void checkLogin() {
@@ -92,6 +93,10 @@ public class DangNhap extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel2.setText("Tên đăng nhập");
+
+        txtUsername.setText("tit");
+
+        txtPassword.setText("111");
 
         btnDangNhap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/Key.png"))); // NOI18N
         btnDangNhap.setText("Đăng nhập");
