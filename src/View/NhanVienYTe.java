@@ -53,7 +53,7 @@ public class NhanVienYTe extends javax.swing.JFrame {
 
         jToolBar1.setRollover(true);
 
-        btnDangNhap.setText("Đăng nhập");
+        btnDangNhap.setText("Đăng xuất");
         btnDangNhap.setFocusable(false);
         btnDangNhap.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnDangNhap.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);

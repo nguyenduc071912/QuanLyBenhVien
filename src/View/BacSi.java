@@ -167,6 +167,7 @@ public class BacSi extends javax.swing.JFrame {
 
     private void btnThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoatActionPerformed
         // TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_btnThoatActionPerformed
 
     private void btnCNKQActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCNKQActionPerformed
