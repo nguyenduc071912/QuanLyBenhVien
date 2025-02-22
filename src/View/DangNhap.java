@@ -157,6 +157,7 @@ public class DangNhap extends javax.swing.JFrame {
 
         jLabel4.setBackground(new java.awt.Color(255, 255, 255));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/trump-small.png"))); // NOI18N
         jLabel4.setOpaque(true);
         jLabel4.setPreferredSize(new java.awt.Dimension(150, 160));
 
