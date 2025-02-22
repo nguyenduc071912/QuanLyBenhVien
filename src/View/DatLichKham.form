@@ -103,12 +103,12 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="T&#xea;n b&#x1ec7;nh nh&#xe2;n"/>
+        <Property name="text" type="java.lang.String" value="M&#xe3; b&#x1ec7;nh nh&#xe2;n"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
-        <Property name="text" type="java.lang.String" value="T&#xea;n b&#xe1;c s&#x129;"/>
+        <Property name="text" type="java.lang.String" value="M&#xe3; b&#xe1;c s&#x129;"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">

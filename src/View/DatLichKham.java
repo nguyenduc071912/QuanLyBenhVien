@@ -47,9 +47,9 @@ public class DatLichKham extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("Đặt Lịch Khám");
 
-        jLabel2.setText("Tên bệnh nhân");
+        jLabel2.setText("Mã bệnh nhân");
 
-        jLabel3.setText("Tên bác sĩ");
+        jLabel3.setText("Mã bác sĩ");
 
         jLabel4.setText("Ngày hẹn");
 
