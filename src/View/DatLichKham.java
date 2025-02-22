@@ -42,6 +42,7 @@ public class DatLichKham extends javax.swing.JFrame {
         btnHuy = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Dat Lich Kham");
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("Đặt Lịch Khám");
