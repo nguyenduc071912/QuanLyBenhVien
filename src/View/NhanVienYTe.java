@@ -4,6 +4,8 @@
  */
 package View;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Admin
@@ -189,10 +191,20 @@ public class NhanVienYTe extends javax.swing.JFrame {
 
     private void btnDangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangNhapActionPerformed
         // TODO add your handling code here:
+        int choice = JOptionPane.showConfirmDialog(this, "Bạn có muốn đăng xuất?","Thông báo",JOptionPane.YES_NO_CANCEL_OPTION);
+        if(choice == JOptionPane.YES_OPTION){
+            DangNhap dn = new DangNhap();
+            dn.setVisible(true);
+            this.dispose();
+        }
     }//GEN-LAST:event_btnDangNhapActionPerformed
 
     private void btnThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoatActionPerformed
         // TODO add your handling code here:
+        int choice = JOptionPane.showConfirmDialog(this, "Bạn có muốn thoát?","Thông báo",JOptionPane.YES_NO_OPTION);
+        if(choice == JOptionPane.YES_OPTION){
+            this.dispose();
+        }
     }//GEN-LAST:event_btnThoatActionPerformed
 
     private void btnBenhNhanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBenhNhanActionPerformed
