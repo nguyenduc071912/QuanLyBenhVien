@@ -26,17 +26,125 @@ public class BacSi extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jToolBar1 = new javax.swing.JToolBar();
+        btnDangXuat = new javax.swing.JButton();
+        btnThoat = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JToolBar.Separator();
+        btnBenhNhan = new javax.swing.JButton();
+        btnCNKQ = new javax.swing.JButton();
+        btnNhacLich = new javax.swing.JButton();
+        jSeparator2 = new javax.swing.JToolBar.Separator();
+        btnHuongDan = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jSeparator3 = new javax.swing.JPopupMenu.Separator();
+        jMenuItem3 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        jMenuItem7 = new javax.swing.JMenuItem();
+        jSeparator4 = new javax.swing.JPopupMenu.Separator();
+        jMenuItem8 = new javax.swing.JMenuItem();
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jMenu1.setText("File");
+        jToolBar1.setRollover(true);
+
+        btnDangXuat.setText("Đăng xuất");
+        btnDangXuat.setFocusable(false);
+        btnDangXuat.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnDangXuat.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(btnDangXuat);
+
+        btnThoat.setText("Thoát");
+        btnThoat.setFocusable(false);
+        btnThoat.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnThoat.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnThoat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThoatActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(btnThoat);
+        jToolBar1.add(jSeparator1);
+
+        btnBenhNhan.setText("Bệnh nhân");
+        btnBenhNhan.setFocusable(false);
+        btnBenhNhan.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnBenhNhan.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(btnBenhNhan);
+
+        btnCNKQ.setText("Cập nhật kết quả");
+        btnCNKQ.setFocusable(false);
+        btnCNKQ.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnCNKQ.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnCNKQ.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCNKQActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(btnCNKQ);
+
+        btnNhacLich.setText("Nhắc lịch");
+        btnNhacLich.setFocusable(false);
+        btnNhacLich.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnNhacLich.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(btnNhacLich);
+        jToolBar1.add(jSeparator2);
+
+        btnHuongDan.setText("Hướng dẫn");
+        btnHuongDan.setFocusable(false);
+        btnHuongDan.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnHuongDan.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(btnHuongDan);
+
+        jMenu1.setText("Hệ thống");
+
+        jMenuItem1.setText("Đăng xuất");
+        jMenu1.add(jMenuItem1);
+
+        jMenuItem2.setText("Đổi mật khẩu");
+        jMenu1.add(jMenuItem2);
+        jMenu1.add(jSeparator3);
+
+        jMenuItem3.setText("Thoát");
+        jMenu1.add(jMenuItem3);
+
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Edit");
+        jMenu2.setText("Quản lý");
+
+        jMenuItem4.setText("Theo dõi bệnh án");
+        jMenu2.add(jMenuItem4);
+
+        jMenuItem5.setText("Cập nhật kết quả khám");
+        jMenu2.add(jMenuItem5);
+
+        jMenuItem6.setText("Nhắc lịch khám");
+        jMenu2.add(jMenuItem6);
+
         jMenuBar1.add(jMenu2);
+
+        jMenu3.setText("Trợ giúp");
+
+        jMenuItem7.setText("Hướng dẫn sử dụng");
+        jMenu3.add(jMenuItem7);
+        jMenu3.add(jSeparator4);
+
+        jMenuItem8.setText("Giới thiệu");
+        jMenu3.add(jMenuItem8);
+
+        jMenuBar1.add(jMenu3);
 
         setJMenuBar(jMenuBar1);
 
@@ -44,15 +152,25 @@ public class BacSi extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 687, Short.MAX_VALUE)
+            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 757, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 403, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 422, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoatActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnThoatActionPerformed
+
+    private void btnCNKQActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCNKQActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCNKQActionPerformed
 
     /**
      * @param args the command line arguments
@@ -90,8 +208,30 @@ public class BacSi extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBenhNhan;
+    private javax.swing.JButton btnCNKQ;
+    private javax.swing.JButton btnDangXuat;
+    private javax.swing.JButton btnHuongDan;
+    private javax.swing.JButton btnNhacLich;
+    private javax.swing.JButton btnThoat;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JToolBar.Separator jSeparator1;
+    private javax.swing.JToolBar.Separator jSeparator2;
+    private javax.swing.JPopupMenu.Separator jSeparator3;
+    private javax.swing.JPopupMenu.Separator jSeparator4;
+    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JToolBar jToolBar1;
     // End of variables declaration//GEN-END:variables
 }
