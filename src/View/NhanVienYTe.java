@@ -38,14 +38,14 @@ public class NhanVienYTe extends javax.swing.JFrame {
         btnHuongDan = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
-        jMenu4 = new javax.swing.JMenu();
-        jMenu5 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jMenu7 = new javax.swing.JMenu();
-        jMenu8 = new javax.swing.JMenu();
-        jMenu9 = new javax.swing.JMenu();
-        jMenu10 = new javax.swing.JMenu();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem7 = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
         jMenu11 = new javax.swing.JMenu();
         jMenu12 = new javax.swing.JMenu();
@@ -134,30 +134,65 @@ public class NhanVienYTe extends javax.swing.JFrame {
 
         jMenu1.setText("Hệ thống");
 
-        jMenu3.setText("Đăng nhập");
-        jMenu1.add(jMenu3);
+        jMenuItem1.setText("Đăng xuất ");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
 
-        jMenu4.setText("Đổi mật khẩu");
-        jMenu1.add(jMenu4);
+        jMenuItem2.setText("Đổi mật khẩu");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem2);
 
-        jMenu5.setText("Thoát");
-        jMenu1.add(jMenu5);
+        jMenuItem3.setText("Thoát");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem3);
 
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Quản lý");
 
-        jMenu7.setText("Quản lý thông tin bệnh viện");
-        jMenu2.add(jMenu7);
+        jMenuItem4.setText("Quản lý thông tin bệnh viện");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem4);
 
-        jMenu8.setText("Đặt lịch khám");
-        jMenu2.add(jMenu8);
+        jMenuItem5.setText("Đặt lịch khám");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem5);
 
-        jMenu9.setText("Cập nhật kết quả khám");
-        jMenu2.add(jMenu9);
+        jMenuItem6.setText("Cập nhật kết quả khám");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem6);
 
-        jMenu10.setText("Nhắc lịch hẹn khám");
-        jMenu2.add(jMenu10);
+        jMenuItem7.setText("Nhắc lịch hẹn khám");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem7);
 
         jMenuBar1.add(jMenu2);
 
@@ -209,23 +244,79 @@ public class NhanVienYTe extends javax.swing.JFrame {
 
     private void btnBenhNhanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBenhNhanActionPerformed
         // TODO add your handling code here:
+        QuanLyThongTinBenhNhan qlttbn = new QuanLyThongTinBenhNhan();
+        qlttbn.setVisible(true);
     }//GEN-LAST:event_btnBenhNhanActionPerformed
 
     private void btnDatLichActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDatLichActionPerformed
         // TODO add your handling code here:
+        DatLichKham dlk = new DatLichKham();
+        dlk.setVisible(true);
     }//GEN-LAST:event_btnDatLichActionPerformed
 
     private void btnCapNhatKQActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCapNhatKQActionPerformed
         // TODO add your handling code here:
+        CapNhatketQuaKham cnkqk = new CapNhatketQuaKham();
+        cnkqk.setVisible(true);
     }//GEN-LAST:event_btnCapNhatKQActionPerformed
 
     private void btnNhacLichActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNhacLichActionPerformed
         // TODO add your handling code here:
+        NhacLichHenKham nlhk = new NhacLichHenKham();
+        nlhk.setVisible(true);
     }//GEN-LAST:event_btnNhacLichActionPerformed
 
     private void btnHuongDanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuongDanActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnHuongDanActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        int choice = JOptionPane.showConfirmDialog(this, "Bạn có muốn đăng xuất?","Thông báo",JOptionPane.YES_NO_CANCEL_OPTION);
+        if(choice == JOptionPane.YES_OPTION){
+            DangNhap dn = new DangNhap();
+            dn.setVisible(true);
+            this.dispose();
+        }
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+        DoiMatKhau dmk = new DoiMatKhau();
+        dmk.setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        // TODO add your handling code here:
+        int choice = JOptionPane.showConfirmDialog(this, "Ban co muon thoat ?", "Thoat", JOptionPane.YES_NO_CANCEL_OPTION);
+        if (choice == JOptionPane.YES_OPTION) {
+            this.dispose();
+        }
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        // TODO add your handling code here:
+        QuanLyThongTinBenhNhan qlttbn = new QuanLyThongTinBenhNhan();
+        qlttbn.setVisible(true);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        // TODO add your handling code here:
+        DatLichKham dlk = new DatLichKham();
+        dlk.setVisible(true);
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        // TODO add your handling code here:
+        CapNhatketQuaKham cnkqk = new CapNhatketQuaKham();
+        cnkqk.setVisible(true);
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        // TODO add your handling code here:
+        NhacLichHenKham nlhk = new NhacLichHenKham();
+        nlhk.setVisible(true);
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -271,18 +362,18 @@ public class NhanVienYTe extends javax.swing.JFrame {
     private javax.swing.JButton btnNhacLich;
     private javax.swing.JButton btnThoat;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu10;
     private javax.swing.JMenu jMenu11;
     private javax.swing.JMenu jMenu12;
     private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
-    private javax.swing.JMenu jMenu7;
-    private javax.swing.JMenu jMenu8;
-    private javax.swing.JMenu jMenu9;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JToolBar jToolBar1;
     // End of variables declaration//GEN-END:variables
 }

@@ -90,6 +90,11 @@ public class BacSi extends javax.swing.JFrame {
         btnBenhNhan.setFocusable(false);
         btnBenhNhan.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnBenhNhan.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnBenhNhan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBenhNhanActionPerformed(evt);
+            }
+        });
         jToolBar1.add(btnBenhNhan);
 
         btnCNKQ.setText("Cập nhật kết quả");
@@ -107,6 +112,11 @@ public class BacSi extends javax.swing.JFrame {
         btnNhacLich.setFocusable(false);
         btnNhacLich.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnNhacLich.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnNhacLich.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNhacLichActionPerformed(evt);
+            }
+        });
         jToolBar1.add(btnNhacLich);
         jToolBar1.add(jSeparator2);
 
@@ -119,6 +129,11 @@ public class BacSi extends javax.swing.JFrame {
         jMenu1.setText("Hệ thống");
 
         jMenuItem1.setText("Đăng xuất");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem1);
 
         mniDoiMatKhau.setText("Đổi mật khẩu");
@@ -131,6 +146,11 @@ public class BacSi extends javax.swing.JFrame {
         jMenu1.add(jSeparator3);
 
         jMenuItem3.setText("Thoát");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem3);
 
         jMenuBar1.add(jMenu1);
@@ -138,12 +158,27 @@ public class BacSi extends javax.swing.JFrame {
         jMenu2.setText("Quản lý");
 
         jMenuItem4.setText("Theo dõi bệnh án");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem4);
 
         jMenuItem5.setText("Cập nhật kết quả khám");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem5);
 
         jMenuItem6.setText("Nhắc lịch khám");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem6);
 
         jMenuBar1.add(jMenu2);
@@ -187,6 +222,8 @@ public class BacSi extends javax.swing.JFrame {
 
     private void btnCNKQActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCNKQActionPerformed
         // TODO add your handling code here:
+        CapNhatketQuaKham cnkqk = new CapNhatketQuaKham();
+        cnkqk.setVisible(true);
     }//GEN-LAST:event_btnCNKQActionPerformed
 
     private void btnDangXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangXuatActionPerformed
@@ -205,6 +242,54 @@ public class BacSi extends javax.swing.JFrame {
         DoiMatKhau dmk = new DoiMatKhau();
         dmk.setVisible(true);
     }//GEN-LAST:event_mniDoiMatKhauActionPerformed
+
+    private void btnBenhNhanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBenhNhanActionPerformed
+        // TODO add your handling code here:
+        QuanLyThongTinBenhNhan qlttbn = new QuanLyThongTinBenhNhan();
+        qlttbn.setVisible(true);
+    }//GEN-LAST:event_btnBenhNhanActionPerformed
+
+    private void btnNhacLichActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNhacLichActionPerformed
+        // TODO add your handling code here:
+        NhacLichHenKham nlhk = new NhacLichHenKham();
+        nlhk.setVisible(true);
+    }//GEN-LAST:event_btnNhacLichActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        int choice = JOptionPane.showConfirmDialog(this, "Ban co muon dang xuat ?", "Dang xuat", JOptionPane.YES_NO_CANCEL_OPTION);
+        if (choice == JOptionPane.YES_OPTION) {
+            DangNhap dn = new DangNhap();
+            dn.setVisible(true);
+            this.dispose();
+        }
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        // TODO add your handling code here:
+        int choice = JOptionPane.showConfirmDialog(this, "Ban co muon thoat ?", "Thoat", JOptionPane.YES_NO_CANCEL_OPTION);
+        if (choice == JOptionPane.YES_OPTION) {
+            this.dispose();
+        }
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        // TODO add your handling code here:
+        TheoDoiBenhAn tdba = new TheoDoiBenhAn();
+        tdba.setVisible(true);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        // TODO add your handling code here:
+        CapNhatketQuaKham cnkqk = new CapNhatketQuaKham();
+        cnkqk.setVisible(true);
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        // TODO add your handling code here:
+        NhacLichHenKham nlhk = new NhacLichHenKham();
+        nlhk.setVisible(true);
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     /**
      * @param args the command line arguments
