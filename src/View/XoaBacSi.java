@@ -4,17 +4,34 @@
  */
 package View;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Zin
  */
 public class XoaBacSi extends javax.swing.JFrame {
-
+    static String url = "jdbc:sqlserver://localhost:1433;databaseName=QLBenhVien;user=sa;password=111;trustServerCertificate=true";
     /**
      * Creates new form XoaBacSi
      */
     public XoaBacSi() {
         initComponents();
+    }
+    
+    public boolean delete(ClassBacSi bs){
+        String sql = "delete from BacSi where Ma = ? and Ten = ?";
+        try (Connection conn = DriverManager.getConnection(url); PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, bs.getMa());
+            ps.setString(2, bs.getTen());
+            return ps.executeUpdate() > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     /**
@@ -34,7 +51,7 @@ public class XoaBacSi extends javax.swing.JFrame {
         btnXoa = new javax.swing.JButton();
         btnHuy = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("Xóa Bác Sĩ");
@@ -44,8 +61,18 @@ public class XoaBacSi extends javax.swing.JFrame {
         jLabel3.setText("Tên");
 
         btnXoa.setText("Xóa");
+        btnXoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoaActionPerformed(evt);
+            }
+        });
 
         btnHuy.setText("Hủy");
+        btnHuy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHuyActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -97,6 +124,43 @@ public class XoaBacSi extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
+        // TODO add your handling code here:
+        StringBuilder sb = new StringBuilder();
+        if (txtMa.getText().isEmpty()) {
+            sb.append("Vui long nhap Ma \n");
+        }
+        if (txtTen.getText().isEmpty()) {
+            sb.append("Vui long nhap Ten \n");
+        }
+        if (sb.length() > 0) {
+            JOptionPane.showMessageDialog(this, sb.toString(), "Thong Bao", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        try {
+            ClassBacSi bs = new ClassBacSi();
+            bs.setMa(txtMa.getText());
+            bs.setTen(txtTen.getText());
+            int choice = JOptionPane.showConfirmDialog(this, "Ban co muon Xoa ?", "Thong bao", JOptionPane.YES_NO_CANCEL_OPTION);
+            if (choice == JOptionPane.YES_OPTION) {
+                if (delete(bs)) {
+                    JOptionPane.showMessageDialog(this, "Xoa thanh cong !", "Thong bao", JOptionPane.INFORMATION_MESSAGE);
+                    QuanLyThongTInBacSi.loadData();
+                }else{
+                    JOptionPane.showMessageDialog(this, "Xoa that bai !", "Thong bao", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btnXoaActionPerformed
+
+    private void btnHuyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_btnHuyActionPerformed
 
     /**
      * @param args the command line arguments

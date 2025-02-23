@@ -4,17 +4,37 @@
  */
 package View;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Zin
  */
 public class SuaBacSi extends javax.swing.JFrame {
-
+    static String url = "jdbc:sqlserver://localhost:1433;databaseName=QLBenhVien;user=sa;password=111;trustServerCertificate=true";
     /**
      * Creates new form SuaBacSi
      */
     public SuaBacSi() {
         initComponents();
+    }
+    
+    public boolean update(ClassBacSi bs){
+        String sql = "update BacSi set Ten = ?, ChuyenKhoa = ?, SDT = ?, Email = ? where Ma = ?";
+        try (Connection conn = DriverManager.getConnection(url); PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(5, bs.getMa());
+            ps.setString(1, bs.getTen());
+            ps.setString(2, bs.getChuyenKhoa());
+            ps.setInt(3, bs.getSDT());
+            ps.setString(4, bs.getEmail());
+            return ps.executeUpdate() > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     /**
@@ -40,11 +60,21 @@ public class SuaBacSi extends javax.swing.JFrame {
         txtEmail = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
         btnHuy.setText("Hủy");
+        btnHuy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHuyActionPerformed(evt);
+            }
+        });
 
         btnSua.setText("Sửa thay đổi ");
+        btnSua.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSuaActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("Sửa Bác Sĩ");
@@ -77,7 +107,7 @@ public class SuaBacSi extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(jLabel2)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
                             .addComponent(txtMa, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -129,6 +159,55 @@ public class SuaBacSi extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
+        // TODO add your handling code here:
+        StringBuilder sb = new StringBuilder();
+        if (txtMa.getText().isEmpty()) {
+            sb.append("Vui long nhap Ma \n");
+        }
+        if (txtTen.getText().isEmpty()) {
+            sb.append("Vui long nhap Ten \n");
+        }
+        if (txtChuyenKhoa.getText().isEmpty()) {
+            sb.append("Vui long nhap ChuyenKhoa \n");
+        }
+        if (txtSDT.getText().isEmpty()) {
+            sb.append("Vui long nhap SDT \n");
+        }
+        if (txtEmail.getText().isEmpty()) {
+            sb.append("Vui long nhap Email \n");
+        }
+        if (sb.length() > 0) {
+            JOptionPane.showMessageDialog(this, sb.toString(), "Thong Bao", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        try {
+            ClassBacSi bs = new ClassBacSi();
+            bs.setMa(txtMa.getText());
+            bs.setTen(txtTen.getText());
+            bs.setChuyenKhoa(txtChuyenKhoa.getText());
+            bs.setSDT(Integer.parseInt(txtSDT.getText()));
+            bs.setEmail(txtEmail.getText());
+            int choice = JOptionPane.showConfirmDialog(this, "Ban co muon Sua ?", "Thong bao", JOptionPane.YES_NO_CANCEL_OPTION);
+            if (choice == JOptionPane.YES_OPTION) {
+                if (update(bs)) {
+                    JOptionPane.showMessageDialog(this, "Sua thanh cong !", "Thong bao", JOptionPane.INFORMATION_MESSAGE);
+                    QuanLyThongTInBacSi.loadData();
+                }else{
+                    JOptionPane.showMessageDialog(this, "Sua that bai !", "Thong bao", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btnSuaActionPerformed
+
+    private void btnHuyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_btnHuyActionPerformed
 
     /**
      * @param args the command line arguments

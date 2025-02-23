@@ -4,17 +4,37 @@
  */
 package View;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Admin
  */
 public class DatLichKham extends javax.swing.JFrame {
-
+    static String url = "jdbc:sqlserver://localhost:1433;databaseName=QLBenhVien;user=sa;password=111;trustServerCertificate=true";
     /**
      * Creates new form DatLichKham
      */
     public DatLichKham() {
         initComponents();
+    }
+    
+    public boolean insert(ClassDatLichKham lk){
+        String sql = "insert into DatLichKham values (?,?,?,?,?)";
+        try (Connection conn = DriverManager.getConnection(url); PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, lk.getMaBenhNhan());
+            ps.setString(2, lk.getMaBacSi());
+            ps.setString(3, lk.getNgayHen());
+            ps.setString(4, lk.getGioHen());
+            ps.setString(5, lk.getGhiChu());
+            return ps.executeUpdate() > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     /**
@@ -41,7 +61,7 @@ public class DatLichKham extends javax.swing.JFrame {
         btnXacNhan = new javax.swing.JButton();
         btnHuy = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Dat Lich Kham");
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -139,10 +159,47 @@ public class DatLichKham extends javax.swing.JFrame {
 
     private void btnXacNhanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXacNhanActionPerformed
         // TODO add your handling code here:
+        StringBuilder sb = new StringBuilder();
+        if (txtTenBenhNhan.getText().isEmpty()) {
+            sb.append("Vui long nhap Ma \n");
+        }
+        if (txtTenBacSi.getText().isEmpty()) {
+            sb.append("Vui long nhap Ten \n");
+        }
+        if (txtNgayHen.getText().isEmpty()) {
+            sb.append("Vui long nhap NgayHen \n");
+        }
+        if (txtGioHen.getText().isEmpty()) {
+            sb.append("Vui long nhap GioHen \n");
+        }
+        if (sb.length() > 0) {
+            JOptionPane.showMessageDialog(this, sb.toString(), "Thong Bao", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        try {
+            ClassDatLichKham lk = new ClassDatLichKham();
+            lk.setMaBenhNhan(txtTenBenhNhan.getText());
+            lk.setMaBacSi(txtTenBacSi.getText());
+            lk.setNgayHen(txtNgayHen.getText());
+            lk.setGioHen(txtGioHen.getText());
+            lk.setGhiChu(txtaGhiChu.getText());
+            int choice = JOptionPane.showConfirmDialog(this, "Ban co muon dat lich ?", "Thong bao", JOptionPane.YES_NO_CANCEL_OPTION);
+            if (choice == JOptionPane.YES_OPTION) {
+                if (insert(lk)) {
+                    JOptionPane.showMessageDialog(this, "dat lich thanh cong !", "Thong bao", JOptionPane.INFORMATION_MESSAGE);
+                }else{
+                    JOptionPane.showMessageDialog(this, "dat lich that bai !", "Thong bao", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_btnXacNhanActionPerformed
 
     private void btnHuyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyActionPerformed
         // TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_btnHuyActionPerformed
 
     /**

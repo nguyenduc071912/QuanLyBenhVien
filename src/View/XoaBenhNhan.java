@@ -4,17 +4,34 @@
  */
 package View;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Administrator
  */
 public class XoaBenhNhan extends javax.swing.JFrame {
-
+    static String url = "jdbc:sqlserver://localhost:1433;databaseName=QLBenhVien;user=sa;password=111;trustServerCertificate=true";
     /**
      * Creates new form XoaBenhNhan
      */
     public XoaBenhNhan() {
         initComponents();
+    }
+    
+    public boolean delete(ClassBenhNhan bn){
+        String sql = "delete from BenhNhan where Ma = ? and Ten = ?";
+        try (Connection conn = DriverManager.getConnection(url); PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, bn.getMa());
+            ps.setString(2, bn.getTen());
+            return ps.executeUpdate() > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     /**
@@ -34,9 +51,14 @@ public class XoaBenhNhan extends javax.swing.JFrame {
         txtMa = new javax.swing.JTextField();
         btnXoa = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
         btnHuy.setText("Hủy");
+        btnHuy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHuyActionPerformed(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel7.setText("Xóa bệnh nhân");
@@ -46,6 +68,11 @@ public class XoaBenhNhan extends javax.swing.JFrame {
         jLabel1.setText("Mã");
 
         btnXoa.setText("Xóa");
+        btnXoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -95,6 +122,42 @@ public class XoaBenhNhan extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
+        // TODO add your handling code here:
+        StringBuilder sb = new StringBuilder();
+        if (txtMa.getText().isEmpty()) {
+            sb.append("Vui long nhap Ma \n");
+        }
+        if (txtTen.getText().isEmpty()) {
+            sb.append("Vui long nhap Ten \n");
+        }
+        if (sb.length() > 0) {
+            JOptionPane.showMessageDialog(this, sb.toString(), "Thong Bao", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        try {
+            ClassBenhNhan bn = new ClassBenhNhan();
+            bn.setMa(txtMa.getText());
+            bn.setTen(txtTen.getText());
+            int choice = JOptionPane.showConfirmDialog(this, "Ban co muon Xoa ?", "Thong bao", JOptionPane.YES_NO_CANCEL_OPTION);
+            if (choice == JOptionPane.YES_OPTION) {
+                if (delete(bn)) {
+                    JOptionPane.showMessageDialog(this, "Xoa thanh cong !", "Thong bao", JOptionPane.INFORMATION_MESSAGE);
+                    QuanLyThongTinBenhNhan.loadData();
+                }else{
+                    JOptionPane.showMessageDialog(this, "Xoa that bai !", "Thong bao", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_btnXoaActionPerformed
+
+    private void btnHuyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_btnHuyActionPerformed
 
     /**
      * @param args the command line arguments

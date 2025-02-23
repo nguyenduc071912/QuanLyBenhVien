@@ -4,17 +4,39 @@
  */
 package View;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Admin
  */
 public class CapNhatketQuaKham extends javax.swing.JFrame {
-
+    static String url = "jdbc:sqlserver://localhost:1433;databaseName=QLBenhVien;user=sa;password=111;trustServerCertificate=true";
     /**
      * Creates new form CapNhatketQuaKham
      */
     public CapNhatketQuaKham() {
         initComponents();
+    }
+    
+    public boolean insert(ClassBenhAn ba){
+        String sql = "insert into BenhAn values (?,?,?,?,?,?,?)";
+        try (Connection conn = DriverManager.getConnection(url); PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, ba.getTenBN());
+            ps.setInt(2, ba.getGioiTinh());
+            ps.setInt(3, ba.getTuoi());
+            ps.setString(4, ba.getBenhAn());
+            ps.setString(5, ba.getKetQuaKham());
+            ps.setString(6, ba.getDonThuoc());
+            ps.setString(7, ba.getNgayCapNhat());
+            return ps.executeUpdate() > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     /**
@@ -47,7 +69,7 @@ public class CapNhatketQuaKham extends javax.swing.JFrame {
         btnLuu = new javax.swing.JButton();
         btnHuy = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Cập nhật kết quả khám");
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -61,7 +83,7 @@ public class CapNhatketQuaKham extends javax.swing.JFrame {
 
         jLabel5.setText("Tuổi");
 
-        jLabel6.setText("Đơn thuộc");
+        jLabel6.setText("Đơn thuốc");
 
         rdoNam.setText("Nam");
 
@@ -192,10 +214,65 @@ public class CapNhatketQuaKham extends javax.swing.JFrame {
 
     private void btnLuuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLuuActionPerformed
         // TODO add your handling code here:
+        StringBuilder sb = new StringBuilder();
+        if (txtHoTen.getText().isEmpty()) {
+            sb.append("Vui long nhap Ten \n");
+        }
+        try {
+            Integer.parseInt(txtTuoi.getText());
+        } catch (Exception e) {
+            sb.append("Vui long nhap So cho Tuoi \n");
+        }
+        if (txtBenhAn.getText().isEmpty()) {
+            sb.append("Vui long nhap BenhAn \n");
+        }
+        if (txtaKetQuaKham.getText().isEmpty()) {
+            sb.append("Vui long nhap KetQuaKham \n");
+        }
+        if (txtaDonThuoc.getText().isEmpty()) {
+            sb.append("Vui long nhap DonThuoc \n");
+        }
+        if (txtNgayCapNhat.getText().isEmpty()) {
+            sb.append("Vui long nhap NgayCapNhat \n");
+        }
+        if (!rdoNam.isSelected() && !rdoNu.isSelected()) {
+            sb.append("Vui long chon GioiTinh \n");
+        }
+        if (sb.length() > 0) {
+            JOptionPane.showMessageDialog(this, sb.toString(), "Thong Bao", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        try {
+            ClassBenhAn ba = new ClassBenhAn();
+            ba.setTenBN(txtHoTen.getText());
+            ba.setTuoi(Integer.parseInt(txtTuoi.getText()));
+            ba.setBenhAn(txtBenhAn.getText());
+            ba.setKetQuaKham(txtaKetQuaKham.getText());
+            ba.setDonThuoc(txtaDonThuoc.getText());
+            ba.setNgayCapNhat(txtNgayCapNhat.getText());
+            if (rdoNam.isSelected()) {
+                ba.setGioiTinh(1);
+            }else{
+                ba.setGioiTinh(0);
+            }
+            int choice = JOptionPane.showConfirmDialog(this, "Ban co muon cap nhat ket qua kham ?", "Thong bao", JOptionPane.YES_NO_CANCEL_OPTION);
+            if (choice == JOptionPane.YES_OPTION) {
+                if (insert(ba)) {
+                    JOptionPane.showMessageDialog(this, "cap nhat ket qua kham thanh cong !", "Thong bao", JOptionPane.INFORMATION_MESSAGE);
+                }else{
+                    JOptionPane.showMessageDialog(this, "cap nhat ket qua kham that bai !", "Thong bao", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
     }//GEN-LAST:event_btnLuuActionPerformed
 
     private void btnHuyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyActionPerformed
         // TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_btnHuyActionPerformed
 
     /**

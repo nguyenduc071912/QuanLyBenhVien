@@ -13,8 +13,8 @@ import javax.swing.table.DefaultTableModel;
  * @author Administrator
  */
 public class QuanLyThongTinBenhNhan extends javax.swing.JFrame {
-DefaultTableModel tableModel;
-SimpleDateFormat formater = new SimpleDateFormat("yyyy/MM/dd");
+    static DefaultTableModel tableModel;
+    SimpleDateFormat formater = new SimpleDateFormat("yyyy/MM/dd");
     /**
      * Creates new form QuanLyThongTinBenhNhan
      */
@@ -28,7 +28,7 @@ SimpleDateFormat formater = new SimpleDateFormat("yyyy/MM/dd");
         tableModel.setColumnIdentifiers(new String[]{"Mã bệnh nhân","Tên bệnh nhân","Ngày sinh","Bệnh lý","SDT","Địa chỉ","Giới tính"});
         tblBangQLTTBN.setModel(tableModel);
     }
-    public void loadData(){
+    public static void loadData(){
         List<ClassBenhNhan> bnList = BenhNhanServices.getAll();
         tableModel.setNumRows(0);
         for(ClassBenhNhan bn: bnList){
@@ -53,8 +53,9 @@ SimpleDateFormat formater = new SimpleDateFormat("yyyy/MM/dd");
         btnXoa = new javax.swing.JButton();
         btnTimKiem = new javax.swing.JButton();
         txtTim = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
         tblBangQLTTBN.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -95,6 +96,13 @@ SimpleDateFormat formater = new SimpleDateFormat("yyyy/MM/dd");
 
         btnTimKiem.setText("Tìm kiếm");
 
+        jButton1.setText("Thoat");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -109,12 +117,13 @@ SimpleDateFormat formater = new SimpleDateFormat("yyyy/MM/dd");
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel1)))
-                .addGap(34, 34, 34)
+                .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnThem)
                     .addComponent(btnSua)
-                    .addComponent(btnXoa))
-                .addContainerGap(62, Short.MAX_VALUE))
+                    .addComponent(btnXoa)
+                    .addComponent(jButton1))
+                .addContainerGap(65, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -129,7 +138,9 @@ SimpleDateFormat formater = new SimpleDateFormat("yyyy/MM/dd");
                         .addGap(18, 18, 18)
                         .addComponent(btnSua)
                         .addGap(18, 18, 18)
-                        .addComponent(btnXoa)))
+                        .addComponent(btnXoa)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton1)))
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnTimKiem)
@@ -157,6 +168,11 @@ SimpleDateFormat formater = new SimpleDateFormat("yyyy/MM/dd");
         XoaBenhNhan xbn = new XoaBenhNhan();
         xbn.setVisible(true);
     }//GEN-LAST:event_btnXoaActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -198,6 +214,7 @@ SimpleDateFormat formater = new SimpleDateFormat("yyyy/MM/dd");
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnTimKiem;
     private javax.swing.JButton btnXoa;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblBangQLTTBN;

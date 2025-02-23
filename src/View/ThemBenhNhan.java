@@ -4,17 +4,38 @@
  */
 package View;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import javax.swing.JOptionPane;
 /**
  *
  * @author Administrator
  */
 public class ThemBenhNhan extends javax.swing.JFrame {
-
+    static String url = "jdbc:sqlserver://localhost:1433;databaseName=QLBenhVien;user=sa;password=111;trustServerCertificate=true";
     /**
      * Creates new form ThemBenhNhan
      */
     public ThemBenhNhan() {
         initComponents();
+    }
+    
+    public boolean insert(ClassBenhNhan bn){
+        String sql = "insert into BenhNhan values (?,?,?,?,?,?,?)";
+        try (Connection conn = DriverManager.getConnection(url); PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, bn.getMa());
+            ps.setString(2, bn.getTen());
+            ps.setString(3, bn.getNgaySinh());
+            ps.setString(4, bn.getBenhLy());
+            ps.setInt(5, bn.getSDT());
+            ps.setString(6, bn.getDiaChi());
+            ps.setInt(7, bn.getGioiTinh());
+            return ps.executeUpdate() > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     /**
@@ -46,7 +67,7 @@ public class ThemBenhNhan extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         txtMa = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
         jLabel1.setText("Tên");
 
@@ -67,8 +88,18 @@ public class ThemBenhNhan extends javax.swing.JFrame {
         rdoNu.setText("Nữ");
 
         btnLuu.setText("Lưu");
+        btnLuu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLuuActionPerformed(evt);
+            }
+        });
 
         btnHuy.setText("Hủy");
+        btnHuy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHuyActionPerformed(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel7.setText("Thêm bệnh nhân");
@@ -169,6 +200,67 @@ public class ThemBenhNhan extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnLuuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLuuActionPerformed
+        // TODO add your handling code here:
+        StringBuilder sb = new StringBuilder();
+        if (txtMa.getText().isEmpty()) {
+            sb.append("Vui long nhap Ma \n");
+        }
+        if (txtTen.getText().isEmpty()) {
+            sb.append("Vui long nhap Ten \n");
+        }
+        if (txtBenhLy.getText().isEmpty()) {
+            sb.append("Vui long nhap BenhLy \n");
+        }
+        if (txtNgaySinh.getText().isEmpty()) {
+            sb.append("Vui long nhap NgaySinh \n");
+        }
+        if (txtSDT.getText().isEmpty()) {
+            sb.append("Vui long nhap SDT \n");
+        }
+        if (txtDiaCHi.getText().isEmpty()) {
+            sb.append("Vui long nhap DiaChi \n");
+        }
+        if (!rdoNam.isSelected() && !rdoNu.isSelected()) {
+            sb.append("Vui long chon GioiTinh \n");
+        }
+        
+        if (sb.length() > 0) {
+            JOptionPane.showMessageDialog(this, sb.toString(), "Thong Bao", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        try {
+            ClassBenhNhan bn = new ClassBenhNhan();
+            bn.setMa(txtMa.getText());
+            bn.setTen(txtTen.getText());
+            bn.setNgaySinh(txtNgaySinh.getText());
+            bn.setBenhLy(txtBenhLy.getText());
+            bn.setSDT(Integer.parseInt(txtSDT.getText()));
+            bn.setDiaChi(txtDiaCHi.getText());
+            if (rdoNam.isSelected()) {
+                bn.setGioiTinh(1);
+            }else{
+                bn.setGioiTinh(0);
+            }
+            int choice = JOptionPane.showConfirmDialog(this, "Ban co muon Them ?", "Thong bao", JOptionPane.YES_NO_CANCEL_OPTION);
+            if (choice == JOptionPane.YES_OPTION) {
+                if (insert(bn)) {
+                    JOptionPane.showMessageDialog(this, "Them thanh cong !", "Thong bao", JOptionPane.INFORMATION_MESSAGE);
+                    QuanLyThongTinBenhNhan.loadData();
+                }else{
+                    JOptionPane.showMessageDialog(this, "Them that bai !", "Thong bao", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_btnLuuActionPerformed
+
+    private void btnHuyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_btnHuyActionPerformed
 
     /**
      * @param args the command line arguments

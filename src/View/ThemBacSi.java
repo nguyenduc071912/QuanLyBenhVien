@@ -4,6 +4,11 @@
  */
 package View;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import javax.swing.JOptionPane;
+
 
 
 /**
@@ -11,7 +16,7 @@ package View;
  * @author Zin
  */
 public class ThemBacSi extends javax.swing.JFrame {
- 
+    static String url = "jdbc:sqlserver://localhost:1433;databaseName=QLBenhVien;user=sa;password=111;trustServerCertificate=true";
     /**
      * Creates new form ThemBacSi
      */
@@ -19,6 +24,20 @@ public class ThemBacSi extends javax.swing.JFrame {
         initComponents();
     }
     
+    public boolean insert(ClassBacSi bs){
+        String sql = "insert into BacSi values (?,?,?,?,?)";
+        try (Connection conn = DriverManager.getConnection(url); PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, bs.getMa());
+            ps.setString(2, bs.getTen());
+            ps.setString(3, bs.getChuyenKhoa());
+            ps.setInt(4, bs.getSDT());
+            ps.setString(5, bs.getEmail());
+            return ps.executeUpdate() > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -43,7 +62,7 @@ public class ThemBacSi extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         txtMa = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("Thêm Bác Sĩ");
@@ -141,10 +160,51 @@ public class ThemBacSi extends javax.swing.JFrame {
 
     private void btnHuyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyActionPerformed
         // TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_btnHuyActionPerformed
 
     private void btnLuuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLuuActionPerformed
         // TODO add your handling code here:
+        StringBuilder sb = new StringBuilder();
+        if (txtMa.getText().isEmpty()) {
+            sb.append("Vui long nhap Ma \n");
+        }
+        if (txtTen.getText().isEmpty()) {
+            sb.append("Vui long nhap Ten \n");
+        }
+        if (txtChyenKhoa.getText().isEmpty()) {
+            sb.append("Vui long nhap ChuyenKhoa \n");
+        }
+        if (txtSDT.getText().isEmpty()) {
+            sb.append("Vui long nhap SDT \n");
+        }
+        if (txtEmail.getText().isEmpty()) {
+            sb.append("Vui long nhap Email \n");
+        }
+        if (sb.length() > 0) {
+            JOptionPane.showMessageDialog(this, sb.toString(), "Thong Bao", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        try {
+            ClassBacSi bs = new ClassBacSi();
+            bs.setMa(txtMa.getText());
+            bs.setTen(txtTen.getText());
+            bs.setChuyenKhoa(txtChyenKhoa.getText());
+            bs.setSDT(Integer.parseInt(txtSDT.getText()));
+            bs.setEmail(txtEmail.getText());
+            int choice = JOptionPane.showConfirmDialog(this, "Ban co muon Them ?", "Thong bao", JOptionPane.YES_NO_CANCEL_OPTION);
+            if (choice == JOptionPane.YES_OPTION) {
+                if (insert(bs)) {
+                    JOptionPane.showMessageDialog(this, "Them thanh cong !", "Thong bao", JOptionPane.INFORMATION_MESSAGE);
+                    QuanLyThongTInBacSi.loadData();
+                }else{
+                    JOptionPane.showMessageDialog(this, "Them that bai !", "Thong bao", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_btnLuuActionPerformed
 
     /**
