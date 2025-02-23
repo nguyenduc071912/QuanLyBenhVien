@@ -38,7 +38,7 @@ public class ThemBenhNhan extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         txtDiaCHi = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        tdoNam = new javax.swing.JRadioButton();
+        rdoNam = new javax.swing.JRadioButton();
         rdoNu = new javax.swing.JRadioButton();
         btnLuu = new javax.swing.JButton();
         btnHuy = new javax.swing.JButton();
@@ -60,8 +60,8 @@ public class ThemBenhNhan extends javax.swing.JFrame {
 
         jLabel6.setText("Giới tính");
 
-        buttonGroup1.add(tdoNam);
-        tdoNam.setText("Nam");
+        buttonGroup1.add(rdoNam);
+        rdoNam.setText("Nam");
 
         buttonGroup1.add(rdoNu);
         rdoNu.setText("Nữ");
@@ -105,7 +105,7 @@ public class ThemBenhNhan extends javax.swing.JFrame {
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(txtDiaCHi, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGroup(layout.createSequentialGroup()
-                                            .addComponent(tdoNam, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(rdoNam, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGap(30, 30, 30)
                                             .addComponent(rdoNu, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -158,7 +158,7 @@ public class ThemBenhNhan extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(tdoNam)
+                    .addComponent(rdoNam)
                     .addComponent(rdoNu))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -217,8 +217,8 @@ public class ThemBenhNhan extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JRadioButton rdoNam;
     private javax.swing.JRadioButton rdoNu;
-    private javax.swing.JRadioButton tdoNam;
     private javax.swing.JTextField txtBenhLy;
     private javax.swing.JTextField txtDiaCHi;
     private javax.swing.JTextField txtMa;

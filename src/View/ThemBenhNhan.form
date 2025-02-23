@@ -57,7 +57,7 @@
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="txtDiaCHi" min="-2" pref="341" max="-2" attributes="0"/>
                                       <Group type="102" alignment="0" attributes="0">
-                                          <Component id="tdoNam" min="-2" pref="98" max="-2" attributes="0"/>
+                                          <Component id="rdoNam" min="-2" pref="98" max="-2" attributes="0"/>
                                           <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                                           <Component id="rdoNu" min="-2" pref="98" max="-2" attributes="0"/>
                                       </Group>
@@ -130,7 +130,7 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="tdoNam" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="rdoNam" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="rdoNu" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -184,7 +184,7 @@
         <Property name="text" type="java.lang.String" value="Gi&#x1edb;i t&#xed;nh"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JRadioButton" name="tdoNam">
+    <Component class="javax.swing.JRadioButton" name="rdoNam">
       <Properties>
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
           <ComponentRef name="buttonGroup1"/>

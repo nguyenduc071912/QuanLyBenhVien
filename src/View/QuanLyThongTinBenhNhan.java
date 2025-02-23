@@ -4,17 +4,36 @@
  */
 package View;
 
+import java.text.SimpleDateFormat;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Administrator
  */
 public class QuanLyThongTinBenhNhan extends javax.swing.JFrame {
-
+DefaultTableModel tableModel;
+SimpleDateFormat formater = new SimpleDateFormat("yyyy/MM/dd");
     /**
      * Creates new form QuanLyThongTinBenhNhan
      */
     public QuanLyThongTinBenhNhan() {
         initComponents();
+        initTable();
+        loadData();
+    }
+    public void initTable(){
+        tableModel = new DefaultTableModel();
+        tableModel.setColumnIdentifiers(new String[]{"Mã bệnh nhân","Tên bệnh nhân","Ngày sinh","Bệnh lý","SDT","Địa chỉ","Giới tính"});
+        tblBangQLTTBN.setModel(tableModel);
+    }
+    public void loadData(){
+        List<ClassBenhNhan> bnList = BenhNhanServices.getAll();
+        tableModel.setNumRows(0);
+        for(ClassBenhNhan bn: bnList){
+            tableModel.addRow(new Object[]{bn.getMa(),bn.getTen(),bn.getNgaySinh(),bn.getBenhLy(),bn.getSDT()+"",bn.getDiaChi(),bn.getGioiTinh() == 1 ? "Nữ":"Nam"});
+        }
     }
 
     /**

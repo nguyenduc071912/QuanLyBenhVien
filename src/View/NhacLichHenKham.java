@@ -4,17 +4,37 @@
  */
 package View;
 
+import java.text.SimpleDateFormat;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Administrator
  */
 public class NhacLichHenKham extends javax.swing.JFrame {
-
+    DefaultTableModel tableModel;
+    SimpleDateFormat formater = new SimpleDateFormat("yyyy/MM/dd");
     /**
      * Creates new form NhacLichHenKham
      */
     public NhacLichHenKham() {
         initComponents();
+        initTable();
+        loadData();
+    }
+    public void initTable(){
+        tableModel = new DefaultTableModel();
+        tableModel.setColumnIdentifiers(new String[]{"ID","Mã bệnh nhân","Mã bác sĩ","Ngày hẹn","Giờ hẹn","Ghi chú"});
+        tblBangNhacHen.setModel(tableModel);
+    }
+    public void loadData(){
+        List<ClassDatLichKham> lkList = DatLichKhamServices.getAll();
+        tableModel.setNumRows(0);
+        int i=1;
+        for(ClassDatLichKham lk : lkList){
+            tableModel.addRow(new Object[]{i++,lk.getMaBenhNhan(),lk.getMaBacSi(),lk.getNgayHen(),lk.getGioHen(),lk.getGhiChu()});
+        }
     }
 
     /**
@@ -48,10 +68,25 @@ public class NhacLichHenKham extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tblBangNhacHen);
 
         btnNhac.setText("Nhắc lại");
+        btnNhac.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNhacActionPerformed(evt);
+            }
+        });
 
         btnHuy.setText("Hủy nhắc");
+        btnHuy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHuyActionPerformed(evt);
+            }
+        });
 
         btnThem.setText("Thêm nhắc nhở mới");
+        btnThem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThemActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -84,6 +119,18 @@ public class NhacLichHenKham extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnNhacActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNhacActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnNhacActionPerformed
+
+    private void btnHuyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnHuyActionPerformed
+
+    private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnThemActionPerformed
 
     /**
      * @param args the command line arguments
