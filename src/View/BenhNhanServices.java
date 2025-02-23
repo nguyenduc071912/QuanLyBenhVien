@@ -17,7 +17,7 @@ import java.util.List;
  * @author Admin
  */
 public class BenhNhanServices {
-    static String connectionUrl = "jdbc:sqlserver://localhost:1433;databaseName=BenhVien;user=sa;password=123;trustServerCertificate=true";
+    static String connectionUrl = "jdbc:sqlserver://localhost:1433;databaseName=QLBenhVien;user=sa;password=111;trustServerCertificate=true";
     
     public static List<ClassBenhNhan> getAll(){
         String sql = "select * from BenhNhan";
